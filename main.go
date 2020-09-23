@@ -31,8 +31,8 @@ func toWin(path string) {
 		rootPath = fmt.Sprintf("%v:\\", strings.ToUpper(linuxPath[5:6]))
 		lastPath = linuxPath[7:]
 	}
-	reg = regexp.MustCompile(`/([A-Z]|[a-z]|[0-9]|\.)`)
-	lastPath = reg.ReplaceAllString(lastPath, "\\${1}")
+	reg = regexp.MustCompile(`/`)
+	lastPath = reg.ReplaceAllString(lastPath, "\\")
 	fmt.Println(rootPath+lastPath)
 }
 
@@ -48,7 +48,7 @@ func toLinux(path string) {
 			lastPath = lastPath[1:]
 		}
 	}
-	reg = regexp.MustCompile(`\\([A-Z]|[a-z]|[0-9]|\.)`)
-	lastPath = reg.ReplaceAllString(lastPath, "/${1}")
+	reg = regexp.MustCompile(`\\`)
+	lastPath = reg.ReplaceAllString(lastPath, "/")
 	fmt.Println(rootPath+lastPath)
 }
